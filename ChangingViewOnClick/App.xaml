@@ -1,0 +1,17 @@
+﻿<Application x:Class="ChangingViewOnClick.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ChangingViewOnClick"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type local:SubViewVM}">
+            <local:SubView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:SubSubViewVM}">
+            <local:SubSubView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:IngredientEditorViewVM}">
+            <local:IngredientEditorView/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

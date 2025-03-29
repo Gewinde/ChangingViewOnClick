@@ -1,0 +1,25 @@
+﻿<Window x:Class="ChangingViewOnClick.IngredientEditorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChangingViewOnClick"
+        mc:Ignorable="d"
+        Title="IngredientEditorView" Height="200" Width="350"
+        WindowStartupLocation="CenterOwner">
+    <Window.DataContext>
+        <local:IngredientEditorViewVM/>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel FlowDirection="LeftToRight">
+            <Label Content="Bitte Namen einfügen:" Margin="2"/>
+            <TextBox x:Name="tb_NewName" Margin="2,2,2,10" Height="35" Width="250" Text="{Binding NewIngredientName}"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btn_Ok" Height="35" Width="100" Content="Ok" Margin="2"/>
+                <Button x:Name="btn_close" Height="35" Width="100" Content="Abbruch" Margin="2" Click="btn_close_Click"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>

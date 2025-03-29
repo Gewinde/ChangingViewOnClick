@@ -1,0 +1,49 @@
+﻿<Page x:Class="ChangingViewOnClick.SubView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ChangingViewOnClick"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SubView">
+    <Page.DataContext>
+        <local:SubViewVM/>
+    </Page.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
+            <Button x:Name="newButton" Content="Create" Width="100" Height="35" Margin="2"/>
+            <Button x:Name="deleteButton" Content="Delete" Width="100" Height="35" Margin="2"/>
+        </StackPanel>
+
+        <ListView x:Name="lv_Ingredient" Margin="2" Grid.Row="1" ItemsSource="{Binding IngredientList}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Löschen" Command="{Binding DeleteIngredientCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}">
+                        <MenuItem.Icon>
+                            <Image Source="F:\Images\icons8-kreuz-mark-emoji-96.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Bearbeiten" Command="{Binding OpenEditIngredientDialogCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}">
+                        <MenuItem.Icon>
+                            <Image Source="F:\Images\icons8-stift-96.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </Grid>
+</Page>
