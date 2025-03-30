@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace ChangingViewOnClick
 {
@@ -9,6 +10,7 @@ namespace ChangingViewOnClick
 
         private Ingredient _selectedIngredient;
         private ObservableCollection<Ingredient> _ingredientList;
+        private Window _mainWindow = Application.Current.MainWindow;
 
         public SubViewVM()
         {
@@ -60,7 +62,12 @@ namespace ChangingViewOnClick
 
         private void OpenIngredientEditor()
         {
-            OpenDialogWindow?.Invoke(this, EventArgs.Empty);
+            var dialog = new IngredientEditorView
+            {
+                Owner = _mainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            };
+            dialog.ShowDialog();
         }
 
         private void DeleteIngredientFromList(Ingredient x)
